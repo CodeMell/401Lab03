@@ -4,17 +4,56 @@ namespace Lab04_TicTacToe
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Challenge 1");
+            Console.WriteLine("Challenge 2");
+            Console.WriteLine("Challenge 3");
+            Console.WriteLine("Challenge 4");
+            Console.WriteLine("Challenge 5");
+            Console.WriteLine("Challenge 6");
+            Console.WriteLine("Challenge 7");
+            Console.WriteLine("Challenge 8");
+            Console.WriteLine("Challenge 9");
         }
 
-        static void StartGame()
+        static void Challenge1()
         {
-            // TODO: Setup your game. Create a new method that creates your players and instantiates the game class. Call that method in your Main method.
-            // You are requesting a Winner to be returned, Determine who the winner is output the celebratory message to the correct player. If it's a draw, tell them that there is no winner. 
 
         }
+        static void Challenge2() 
+        {
+        
+        }
+        static void Challenge3() 
+        { 
+        
+        }
+        static void Challenge4() 
+        {
+        
+        }
+        static void Challenge5() 
+        {
+        
+        }
+        static void Challenge6() 
+        {
+        
+        }
+        static void Challenge7() 
+        {
+        
+        }
+        static void Challenge8() 
+        { 
+        
+        }
+        static void Challenge9() 
+        {
+        
+        }
+
 
 
     }
