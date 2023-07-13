@@ -4,7 +4,7 @@ namespace Lab03
 {
     class Program
     {
-        static void Main()
+        public static void Main()
         {
             Console.WriteLine("Challenge 1");
             Challenge1();
@@ -46,7 +46,7 @@ namespace Lab03
             }
         }
 
-        static void Challenge1()
+        public static void Challenge1()
         {
             Console.WriteLine("Please enter 3 numbers (space out each number):");
             string input = Console.ReadLine();
@@ -69,7 +69,7 @@ namespace Lab03
 
             Console.WriteLine("The product of these 3 numbers is: " + product);
         }
-        static void Challenge2()
+        public static void Challenge2()
         {
             int count;
 
@@ -125,7 +125,7 @@ namespace Lab03
             Console.WriteLine("The average of these " + count + " numbers is: " + average);
         }
 
-        static void Challenge3()
+        public static void Challenge3()
         {
             Console.WriteLine("       *     ");
             Console.WriteLine("      **     ");
@@ -140,7 +140,7 @@ namespace Lab03
             Console.WriteLine("      *      ");
         }
 
-        static int Challenge4(int[] numbers)
+        public static int Challenge4(int[] numbers)
         {
             Dictionary<int, int> countMap = new Dictionary<int, int>();
 
@@ -167,7 +167,7 @@ namespace Lab03
             return mostFrequentNumber;
         }
 
-        static int Challenge5(int[] array)
+        public static int Challenge5(int[] array)
         {
             if (array == null || array.Length == 0)
             {
@@ -186,7 +186,7 @@ namespace Lab03
             return max;
         }
 
-        static void Challenge6()
+        public static void Challenge6()
         {
             Console.WriteLine("Please enter a word:");
 
@@ -198,7 +198,7 @@ namespace Lab03
             }
         }
 
-        static void Challenge7()
+        public static void Challenge7()
         {
             try
             {
@@ -217,7 +217,7 @@ namespace Lab03
             }
         }
 
-        static void Challenge8()
+        public static void Challenge8()
         {
             try
             {
@@ -244,7 +244,7 @@ namespace Lab03
             }
         }
 
-        static string[] Challenge9(string sentence)
+        public static string[] Challenge9(string sentence)
         {
             string[] words = sentence.Split(' ');
             string[] result = new string[words.Length];
@@ -258,9 +258,5 @@ namespace Lab03
 
             return result;
         }
-
-
-
-
     }
 }
