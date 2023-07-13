@@ -2,15 +2,19 @@
 
 namespace Lab03
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
             Console.WriteLine("Challenge 1");
-            Challenge1();
+            Console.WriteLine("Please enter 3 numbers (space out each number):");
+            string input1 = Console.ReadLine();
+            Challenge1(input1);
 
             Console.WriteLine("Challenge 2");
-            Challenge2();
+            Console.WriteLine("Please enter a number between 2-10:");
+            string input2 = Console.ReadLine();
+            Challenge2(input2);
 
             Console.WriteLine("Challenge 3");
             Challenge3();
@@ -46,17 +50,15 @@ namespace Lab03
             }
         }
 
-        public static void Challenge1()
+        public static int Challenge1(string input)
         {
-            Console.WriteLine("Please enter 3 numbers (space out each number):");
-            string input = Console.ReadLine();
 
             string[] numbers = input.Split(' ');
 
             if (numbers.Length < 3)
             {
                 Console.WriteLine("Not enough numbers entered.");
-                return;
+                return 0;
             }
 
             int product = 1;
@@ -68,15 +70,14 @@ namespace Lab03
             }
 
             Console.WriteLine("The product of these 3 numbers is: " + product);
+            return product;
         }
-        public static void Challenge2()
+        public static double Challenge2(string input)
         {
             int count;
 
             do
             {
-                Console.WriteLine("Please enter a number between 2-10:");
-                string input = Console.ReadLine();
 
                 if (!int.TryParse(input, out count))
                 {
@@ -93,17 +94,18 @@ namespace Lab03
                 break;
             } while (true);
 
-            int sum = 0;
-            for (int i = 1; i <= count; i++)
+            int[] inputRange = new int[count];
+
+            for (int i = 0; i < count; i++)
             {
                 int number;
 
                 do
                 {
                     Console.WriteLine($"{i} of {count} - Enter a number:");
-                    string input = Console.ReadLine();
+                    string input2b = Console.ReadLine();
 
-                    if (!int.TryParse(input, out number))
+                    if (!int.TryParse(input2b, out number))
                     {
                         Console.WriteLine("Invalid input. Please enter a valid number.");
                         continue;
@@ -117,146 +119,164 @@ namespace Lab03
 
                     break;
                 } while (true);
+                inputRange[i] = number;
+
+            }
+
+            double average = Challenge2_GetAverage(inputRange);
+            Console.WriteLine("The average of these " + count + " numbers is: " + average);
+            return average;
+        }
+        public static double Challenge2_GetAverage(int[] inputRange)
+        {
+            int sum = 0;
+            int count = inputRange.Length;
+            for (int i = 0; i < count; i++)
+            {
+
+                int number = inputRange[i];
+
+
 
                 sum += number;
-            }
 
-            double average = (double)sum / count;
-            Console.WriteLine("The average of these " + count + " numbers is: " + average);
+            }
+            double average = sum / count;
+            return average;
         }
 
-        public static void Challenge3()
-        {
-            Console.WriteLine("       *     ");
-            Console.WriteLine("      **     ");
-            Console.WriteLine("     ***     ");
-            Console.WriteLine("    *****    ");
-            Console.WriteLine("  *********  ");
-            Console.WriteLine("*************");
-            Console.WriteLine("  *********  ");
-            Console.WriteLine("    *****    ");
-            Console.WriteLine("     ***     ");
-            Console.WriteLine("      **     ");
-            Console.WriteLine("      *      ");
-        }
-
-        public static int Challenge4(int[] numbers)
-        {
-            Dictionary<int, int> countMap = new Dictionary<int, int>();
-
-            foreach (int number in numbers)
+            public static void Challenge3()
             {
-                if (countMap.ContainsKey(number))
-                    countMap[number]++;
-                else
-                    countMap[number] = 1;
+                Console.WriteLine("       *     ");
+                Console.WriteLine("      **     ");
+                Console.WriteLine("     ***     ");
+                Console.WriteLine("    *****    ");
+                Console.WriteLine("  *********  ");
+                Console.WriteLine("*************");
+                Console.WriteLine("  *********  ");
+                Console.WriteLine("    *****    ");
+                Console.WriteLine("     ***     ");
+                Console.WriteLine("      **     ");
+                Console.WriteLine("      *      ");
             }
 
-            int maxCount = 0;
-            int mostFrequentNumber = numbers[0];
-
-            foreach (KeyValuePair<int, int> kvp in countMap)
+            public static int Challenge4(int[] numbers)
             {
-                if (kvp.Value > maxCount)
+                Dictionary<int, int> countMap = new Dictionary<int, int>();
+
+                foreach (int number in numbers)
                 {
-                    maxCount = kvp.Value;
-                    mostFrequentNumber = kvp.Key;
+                    if (countMap.ContainsKey(number))
+                        countMap[number]++;
+                    else
+                        countMap[number] = 1;
                 }
-            }
 
-            return mostFrequentNumber;
-        }
+                int maxCount = 0;
+                int mostFrequentNumber = numbers[0];
 
-        public static int Challenge5(int[] array)
-        {
-            if (array == null || array.Length == 0)
-            {
-                Console.WriteLine("The array is null or empty.");
-                return int.MinValue;
-            }
-
-            int max = array[0];
-
-            for (int i = 1; i < array.Length; i++)
-            {
-                if (array[i] > max)
-                    max = array[i];
-            }
-
-            return max;
-        }
-
-        public static void Challenge6()
-        {
-            Console.WriteLine("Please enter a word:");
-
-            string word = Console.ReadLine();
-            using (StreamWriter writer = new StreamWriter("words.txt", true))
-            {
-                writer.WriteLine(word);
-                Console.WriteLine("Word successfully saved to words.txt.");
-            }
-        }
-
-        public static void Challenge7()
-        {
-            try
-            {
-                using (StreamReader reader = new StreamReader("words.txt"))
+                foreach (KeyValuePair<int, int> kvp in countMap)
                 {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
+                    if (kvp.Value > maxCount)
                     {
-                        Console.WriteLine(line);
+                        maxCount = kvp.Value;
+                        mostFrequentNumber = kvp.Key;
                     }
                 }
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("The words.txt file does not exist.");
-            }
-        }
 
-        public static void Challenge8()
-        {
-            try
-            {
-                Console.WriteLine("Removing a word from words.txt...");
+                return mostFrequentNumber;
+            }
 
-                string[] lines = File.ReadAllLines("words.txt");
-                if (lines.Length == 0)
+            public static int Challenge5(int[] array)
+            {
+                if (array == null || array.Length == 0)
                 {
-                    Console.WriteLine("The words.txt file is empty.");
-                    return;
+                    Console.WriteLine("The array is null or empty.");
+                    return int.MinValue;
                 }
 
-                // Remove a word from the lines array (e.g., remove the first word)
-                string[] newLines = new string[lines.Length - 1];
-                Array.Copy(lines, 1, newLines, 0, lines.Length - 1);
+                int max = array[0];
 
-                File.WriteAllLines("words.txt", newLines);
+                for (int i = 1; i < array.Length; i++)
+                {
+                    if (array[i] > max)
+                        max = array[i];
+                }
 
-                Console.WriteLine("Word removed and file updated successfully.");
+                return max;
             }
-            catch (FileNotFoundException)
+
+            public static void Challenge6()
             {
-                Console.WriteLine("The words.txt file does not exist.");
+                Console.WriteLine("Please enter a word:");
+
+                string word = Console.ReadLine();
+                using (StreamWriter writer = new StreamWriter("words.txt", true))
+                {
+                    writer.WriteLine(word);
+                    Console.WriteLine("Word successfully saved to words.txt.");
+                }
             }
-        }
 
-        public static string[] Challenge9(string sentence)
-        {
-            string[] words = sentence.Split(' ');
-            string[] result = new string[words.Length];
-
-            for (int i = 0; i < words.Length; i++)
+            public static void Challenge7()
             {
-                string word = words[i];
-                int wordLength = word.Length;
-                result[i] = $"{word}: {wordLength}";
+                try
+                {
+                    using (StreamReader reader = new StreamReader("words.txt"))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            Console.WriteLine(line);
+                        }
+                    }
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("The words.txt file does not exist.");
+                }
             }
 
-            return result;
+            public static void Challenge8()
+            {
+                try
+                {
+                    Console.WriteLine("Removing a word from words.txt...");
+
+                    string[] lines = File.ReadAllLines("words.txt");
+                    if (lines.Length == 0)
+                    {
+                        Console.WriteLine("The words.txt file is empty.");
+                        return;
+                    }
+
+                    // Remove a word from the lines array (e.g., remove the first word)
+                    string[] newLines = new string[lines.Length - 1];
+                    Array.Copy(lines, 1, newLines, 0, lines.Length - 1);
+
+                    File.WriteAllLines("words.txt", newLines);
+
+                    Console.WriteLine("Word removed and file updated successfully.");
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("The words.txt file does not exist.");
+                }
+            }
+
+            public static string[] Challenge9(string sentence)
+            {
+                string[] words = sentence.Split(' ');
+                string[] result = new string[words.Length];
+
+                for (int i = 0; i < words.Length; i++)
+                {
+                    string word = words[i];
+                    int wordLength = word.Length;
+                    result[i] = $"{word}: {wordLength}";
+                }
+
+                return result;
+            }
         }
     }
-}
