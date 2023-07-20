@@ -41,7 +41,15 @@ namespace Lab03_Test
         [Fact]
         public void Challenge9Test() 
         {
-        
+            // Arrange
+            string sentence = "This is a test sentence";
+            string[] expected = { "This: 4", "is: 2", "a: 1", "test: 4", "sentence: 8" };
+
+            // Act
+            string[] result = Program.Challenge9(sentence);
+
+            // Assert
+            Assert.Equal(expected, result);
         }
     }
 }
